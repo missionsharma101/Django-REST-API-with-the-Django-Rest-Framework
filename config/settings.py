@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'app.order.apps.OrderConfig',
     'app.authenticate.apps.AuthenticateConfig',
 
-
 ]
 AUTH_USER_MODEL = 'authenticate.User'
 
@@ -106,3 +105,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'NON_FIELD_ERRORS_KEY': 'error'
+}
