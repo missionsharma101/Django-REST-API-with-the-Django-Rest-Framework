@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 from decouple import config
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     'app.project',
     'app.order.apps.OrderConfig',
     'app.authenticate.apps.AuthenticateConfig',
+    'djoser',
 
 ]
 AUTH_USER_MODEL = 'authenticate.User'
@@ -107,5 +109,16 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'NON_FIELD_ERRORS_KEY': 'error'
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+
+    )
+
+}
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'BLACKLIST_AFTER_ROTATION': False,
 }
